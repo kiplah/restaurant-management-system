@@ -29,12 +29,25 @@ if (isset($_GET['delete_order'])) {
     exit;
 }
 
-// Handle updating an order status
+// Handle updating an order status and log the change
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['update_order_status'])) {
     $order_id = $_POST['order_id'];
-    $status = $_POST['status'];
+    $new_status = $_POST['status'];
+
+    // Fetch current status to log the change
+    $stmt = $pdo->prepare("SELECT status FROM Orders WHERE order_id = ?");
+    $stmt->execute([$order_id]);
+    $order = $stmt->fetch();
+    $old_status = $order['status'];
+
+    // Update the order status
     $stmt = $pdo->prepare("UPDATE Orders SET status = ? WHERE order_id = ?");
-    $stmt->execute([$status, $order_id]);
+    $stmt->execute([$new_status, $order_id]);
+
+    // Log the status change
+    $stmt = $pdo->prepare("INSERT INTO OrderStatusLog (order_id, old_status, new_status) VALUES (?, ?, ?)");
+    $stmt->execute([$order_id, $old_status, $new_status]);
+
     header("Location: orders.php"); // Redirect after updating the order
     exit;
 }
@@ -103,6 +116,32 @@ $orders = $stmt->fetchAll();
                         <td>
                             <a href="orders.php?delete_order=<?php echo $order['order_id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this order?');">Delete</a>
                         </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+
+        <h3>Order Status History</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Old Status</th>
+                    <th>New Status</th>
+                    <th>Changed At</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                // Fetch the order status history
+                $statusLogStmt = $pdo->query("SELECT * FROM OrderStatusLog ORDER BY changed_at DESC");
+                $statusLogs = $statusLogStmt->fetchAll();
+                foreach ($statusLogs as $log): ?>
+                    <tr>
+                        <td><?php echo htmlspecialchars($log['order_id']); ?></td>
+                        <td><?php echo htmlspecialchars($log['old_status']); ?></td>
+                        <td><?php echo htmlspecialchars($log['new_status']); ?></td>
+                        <td><?php echo htmlspecialchars($log['changed_at']); ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>

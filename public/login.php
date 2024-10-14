@@ -6,10 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+        .login-container {
+            max-width: 400px;
+            margin: auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-top: 100px;
+        }
+        .btn-register {
+            background-color: #0070ba; /* PayPal's color */
+            color: white;
+        }
+        .btn-register:hover {
+            background-color: #005a8c; /* Darker shade on hover */
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Login</h2>
+    <div class="login-container">
+        <h2 class="text-center">Login</h2>
         <form action="login.php" method="POST">
             <div class="form-group">
                 <label for="email">Email:</label>
@@ -19,8 +40,19 @@
                 <label for="password">Password:</label>
                 <input type="password" class="form-control" id="password" name="password" required>
             </div>
-            <button type="submit" class="btn btn-primary">Login</button>
+            
+            <!-- Forgot Password Link -->
+            <div class="text-center">
+                <a href="reset_password.php">Forgot password? Reset it here</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block mt-3">Login</button>
         </form>
+        <p style="text-align: center;">Or</p>
+
+        <div class="text-center mt-3">
+            <a href="register.php" class="btn btn-register btn-block">Register</a>
+        </div>
     </div>
 
     <?php
@@ -49,10 +81,10 @@
                 header("Location: dashboard.php"); // Uncomment to redirect
                 exit;
             } else {
-                echo "Invalid password!";
+                echo "<div class='alert alert-danger'>Invalid password!</div>";
             }
         } else {
-            echo "User not found!";
+            echo "<div class='alert alert-danger'>User not found! Please <a href='register.php'>register</a>.</div>";
         }
     }
     ?>
