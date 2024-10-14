@@ -33,6 +33,10 @@
             background-size: cover;
             background-position: center;
             color: white;
+            display: flex; /* Enable flexbox */
+            justify-content: center; /* Center horizontally */
+            align-items: center; /* Center vertically */
+            text-align: center; /* Center text alignment */
         }
         .hero::before {
             content: '';
@@ -48,7 +52,6 @@
         .hero p {
             position: relative; /* Bring text above the overlay */
             z-index: 2; /* Ensure text is above the overlay */
-            text-align: center;
         }
         .about-us {
             margin-top: 20px;
