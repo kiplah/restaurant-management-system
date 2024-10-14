@@ -1,7 +1,7 @@
 <?php
 // place_order.php
 
-include('../includes/db.php'); // Include the database connection
+include('../includes/db.php'); 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $table_id = $_POST['table_id'];
