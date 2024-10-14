@@ -1,7 +1,7 @@
 <?php
 // users.php
 
-include('../includes/db.php'); // Ensure you have the correct path to your database connection
+include('../includes/db.php'); 
 
 // Fetch users from the database
 $query = "SELECT * FROM Users";
