@@ -8,6 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
     <style>
         body {
             background-color: #f7f7f7;
@@ -51,7 +54,56 @@
             padding: 20px 0;
             margin-top: auto;
         }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            color: #fff;
+        }
+
+        .carousel-item img {
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .carousel-caption h5 {
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+
+        .carousel-caption p {
+            font-size: 1.1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            transition: 0.3s ease-in-out;
+        }
+
+        .testimonial-box {
+            transition: box-shadow 0.4s ease, transform 0.4s ease;
+            border: 1px solid #eee;
+        }
+
+        [data-aos="zoom-in-up"].aos-animate .testimonial-box {
+            box-shadow: 0 0 20px rgba(0, 255, 200, 0.4);
+            transform: scale(1.02);
+        }
+
+        .testimonial-box:hover {
+            box-shadow: 0 0 25px rgba(0, 123, 255, 0.5);
+            transform: scale(1.04);
+        }
     </style>
+
 </head>
 
 <!-- Scroll-to-top button -->
@@ -67,7 +119,10 @@
 
     // Scroll to top
     function scrollToTop() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
     }
 </script>
 
@@ -87,71 +142,72 @@
     </header>
 
     <section class="hero">
-        <div class="hero-content">
+        <div class="hero-content" data-aos="fade-up">
             <h1 class="display-4 fw-bold">Manage Your Restaurant Effortlessly</h1>
             <p class="lead">From table bookings to order tracking, everything simplified.</p>
         </div>
+
     </section>
-<section class="py-5 bg-white">
-    <div class="container">
-        <h2 class="text-center mb-4">Explore Our Features</h2>
-        <div id="featureCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
+    <section class="py-5 bg-white" data-aos="fade-up">
+        <div class="container">
+            <h2 class="text-center mb-4">Explore Our Features</h2>
+            <div id="featureCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
 
-                <div class="carousel-item active">
-                    <img src="images/kitchen.jpg" class="d-block w-100 rounded" alt="Kitchen Efficiency">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Smart Kitchen Workflow</h5>
-                        <p>Seamlessly track food prep from start to finish.</p>
+                    <div class="carousel-item active">
+                        <img src="images/kitchen.jpg" class="d-block w-100 rounded" alt="Kitchen Efficiency">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Smart Kitchen Workflow</h5>
+                            <p>Seamlessly track food prep from start to finish.</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="carousel-item">
-                    <img src="images/menu_management.jpg" class="d-block w-100 rounded" alt="Menu Management">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Live Menu Updates</h5>
-                        <p>Update prices and items instantly from the dashboard.</p>
+                    <div class="carousel-item">
+                        <img src="images/menu_management.jpg" class="d-block w-100 rounded" alt="Menu Management">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Live Menu Updates</h5>
+                            <p>Update prices and items instantly from the dashboard.</p>
+                        </div>
                     </div>
-                </div>
 
-                <div class="carousel-item">
-                    <img src="images/table_management.jpg" class="d-block w-100 rounded" alt="Table Management">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Table Reservation System</h5>
-                        <p>Organize reservations and walk-ins like a pro.</p>
+                    <div class="carousel-item">
+                        <img src="images/table_management.jpg" class="d-block w-100 rounded" alt="Table Management">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>Table Reservation System</h5>
+                            <p>Organize reservations and walk-ins like a pro.</p>
+                        </div>
                     </div>
-                </div>
 
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#featureCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#featureCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#featureCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#featureCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
         </div>
-    </div>
-</section>
+    </section>
 
 
 
-    <section class="py-5 text-center">
+    <section class="py-5 text-center" data-aos="fade-up">
         <div class="container">
             <h2 class="mb-4">Why Choose Our System?</h2>
             <div class="row g-4">
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="100">
                     <i class="bi bi-speedometer2 display-5 text-primary"></i>
                     <h5 class="mt-3">Fast Performance</h5>
                     <p>Instant updates on orders, menu, and table management.</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="200">
                     <i class="bi bi-shield-check display-5 text-success"></i>
                     <h5 class="mt-3">Secure Access</h5>
                     <p>All user and order data is protected with best practices.</p>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-4" data-aos="zoom-in" data-aos-delay="300">
                     <i class="bi bi-people display-5 text-warning"></i>
                     <h5 class="mt-3">User Friendly</h5>
                     <p>Intuitive UI for both staff and managers to get things done easily.</p>
@@ -159,6 +215,8 @@
             </div>
         </div>
     </section>
+
+
     <section class="py-5 bg-light text-center">
         <div class="container">
             <h2 class="mb-4">Get Started Today!</h2>
@@ -169,20 +227,20 @@
             <div class="container text-center">
                 <h2 class="mb-5">What Our Users Say</h2>
                 <div class="row g-4">
-                    <div class="col-md-4">
-                        <div class="p-4 bg-white shadow rounded">
+                    <div class="col-md-4" data-aos="zoom-in-up" data-aos-delay="200">
+                        <div class="p-4 bg-white shadow rounded testimonial-box">
                             <p>"This system has transformed how we manage our kitchen and orders!"</p>
                             <h6 class="mt-3">— Sarah, Restaurant Manager</h6>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="p-4 bg-white shadow rounded">
+                    <div class="col-md-4" data-aos="zoom-in-up" data-aos-delay="200">
+                        <div class="p-4 bg-white shadow rounded testimonial-box">
                             <p>"Simple, fast, and effective. Just what we needed."</p>
                             <h6 class="mt-3">— Ahmed, Chef</h6>
                         </div>
                     </div>
-                    <div class="col-md-4">
-                        <div class="p-4 bg-white shadow rounded">
+                    <div class="col-md-4" data-aos="zoom-in-up" data-aos-delay="200">
+                        <div class="p-4 bg-white shadow rounded testimonial-box">
                             <p>"User interface is so intuitive, even new staff learn it fast."</p>
                             <h6 class="mt-3">— James, Front Desk</h6>
                         </div>
@@ -212,6 +270,14 @@
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+    </script>
 
 </body>
 

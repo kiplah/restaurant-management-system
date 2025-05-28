@@ -43,6 +43,7 @@
         }
 
         .content {
+    
             display: flex;
             flex-direction: column;
             justify-content: center; /* Center content horizontally */
